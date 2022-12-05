@@ -1,0 +1,51 @@
+syntax="proto3";
+
+package myservice;
+
+option go_package="./myservice_pb";
+
+service SignUpService {
+  rpc SignUp(SignUpRequest) returns (SignUpResponse) {}
+  rpc GetUserByID(GetUserRequest) returns (GetUserResponse) {}
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
+}
+
+message UpdateUserRequest {
+  string id=1;
+  string name =2;
+  int32 age= 3;
+  string email =4;
+
+}
+message UpdateUserResponse {
+  string response = 1;
+}
+message DeleteUserRequest {
+  string id=1;
+}
+message DeleteUserResponse {
+  string response=1;
+}
+
+
+message GetUserRequest{
+  string id = 1;
+}
+message GetUserResponse{
+    string name =1;
+    int32 age= 2;
+    string email =3;
+}
+
+
+message SignUpRequest {
+  string name =1;
+  int32 age= 2;
+  string email =3;
+}
+
+message SignUpResponse{
+  string response =1;
+  string id = 2;
+}
