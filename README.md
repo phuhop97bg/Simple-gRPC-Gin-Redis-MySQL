@@ -1,4 +1,4 @@
-# myservice
+# Simple gRPC project
 **My gRPC project**<br />
 
 **Service A:** 
