@@ -177,7 +177,7 @@ func main() {
 	defer cache.Close()
 	defer db.Close()
 
-	myservice_pb.RegisterSignUpServiceServer(s, &server{cache, db})
+	myservice_pb.RegisterTestRPCServiceServer(s, &server{cache, db})
 
 	fmt.Println("service is running")
 

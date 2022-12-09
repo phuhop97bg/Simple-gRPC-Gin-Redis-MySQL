@@ -24,7 +24,7 @@ func main() {
 	}
 	defer cc.Close()
 
-	client := myservice_pb.NewSignUpServiceClient(cc)
+	client := myservice_pb.NewTestRPCServiceClient(cc)
 	log.Println("serice client ", client)
 
 	r := gin.Default()
@@ -37,7 +37,7 @@ func main() {
 }
 
 // define funcion call sign in rpc
-func callSignUp(c myservice_pb.SignUpServiceClient, user *UserModel.User) {
+func callSignUp(c myservice_pb.TestRPCServiceClient, user *UserModel.User) {
 	log.Println("callSignUp calling")
 
 	SignUpRequest := myservice_pb.SignUpRequest{
@@ -55,7 +55,7 @@ func callSignUp(c myservice_pb.SignUpServiceClient, user *UserModel.User) {
 }
 
 // define POST handler function create user
-func createUser(client myservice_pb.SignUpServiceClient) gin.HandlerFunc {
+func createUser(client myservice_pb.TestRPCServiceClient) gin.HandlerFunc {
 
 	return func(ctx *gin.Context) {
 		user := UserModel.User{}
@@ -80,7 +80,7 @@ func createUser(client myservice_pb.SignUpServiceClient) gin.HandlerFunc {
 }
 
 // define rpc function call get user
-func callGetUser(c myservice_pb.SignUpServiceClient, id string) UserModel.User {
+func callGetUser(c myservice_pb.TestRPCServiceClient, id string) UserModel.User {
 	log.Println("callGetUserByID calling")
 
 	//init context and set time out to context
@@ -128,7 +128,7 @@ func callGetUser(c myservice_pb.SignUpServiceClient, id string) UserModel.User {
 }
 
 // define GET gin handler func to get user by id
-func getUser(client myservice_pb.SignUpServiceClient) gin.HandlerFunc {
+func getUser(client myservice_pb.TestRPCServiceClient) gin.HandlerFunc {
 
 	return func(c *gin.Context) {
 		var user UserModel.User
@@ -147,7 +147,7 @@ func getUser(client myservice_pb.SignUpServiceClient) gin.HandlerFunc {
 }
 
 // define rpc function call delete user
-func callDeleteUser(client myservice_pb.SignUpServiceClient, id string) string {
+func callDeleteUser(client myservice_pb.TestRPCServiceClient, id string) string {
 	log.Println("callDeleteUser calling")
 
 	deleteUserRequest := myservice_pb.DeleteUserRequest{
@@ -162,7 +162,7 @@ func callDeleteUser(client myservice_pb.SignUpServiceClient, id string) string {
 }
 
 // define DELETE gin handler func to delete user by id
-func deleteUser(client myservice_pb.SignUpServiceClient) gin.HandlerFunc {
+func deleteUser(client myservice_pb.TestRPCServiceClient) gin.HandlerFunc {
 
 	return func(c *gin.Context) {
 		//extract id from http param
@@ -175,7 +175,7 @@ func deleteUser(client myservice_pb.SignUpServiceClient) gin.HandlerFunc {
 }
 
 // define rpc function to call update user
-func callUpdateUser(client myservice_pb.SignUpServiceClient, user *UserModel.User) string {
+func callUpdateUser(client myservice_pb.TestRPCServiceClient, user *UserModel.User) string {
 	log.Println("callUpdate calling")
 
 	UpdateUserRequest := myservice_pb.UpdateUserRequest{
@@ -194,7 +194,7 @@ func callUpdateUser(client myservice_pb.SignUpServiceClient, user *UserModel.Use
 }
 
 // define PUT gin handler func to update user by id
-func updateUser(client myservice_pb.SignUpServiceClient) gin.HandlerFunc {
+func updateUser(client myservice_pb.TestRPCServiceClient) gin.HandlerFunc {
 
 	return func(ctx *gin.Context) {
 		//extract id from http param

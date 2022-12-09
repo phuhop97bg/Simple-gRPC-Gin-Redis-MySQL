@@ -4,7 +4,7 @@ package myservice;
 
 option go_package="./myservice_pb";
 
-service SignUpService {
+service TestRPCService {
   rpc SignUp(SignUpRequest) returns (SignUpResponse) {}
   rpc GetUserByID(GetUserRequest) returns (GetUserResponse) {}
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
